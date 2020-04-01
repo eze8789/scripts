@@ -4,7 +4,7 @@ host="$1"
 port="$2"
 
 if [ -z "$host" ] || [ -z "$port" ]; then
-  echo "usage: scan <hostname> <port>" 
+  echo "usage: tcp_port_status.sh <hostname> <port>" 
   exit 1
 fi  
 
