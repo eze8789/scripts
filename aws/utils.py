@@ -41,4 +41,16 @@ def s3_bucket_versioning(bucket_name, status=False):
     print(bucket_versioning.status)
 
 
+def s3_delete_all_objects(bucket_name):
+    """Delete all objects from the bucket"""
+    s3 = boto3.resource('s3')
+    files = []
+    bucket=s3.Bucket(bucket_name)
+    for obj_version in bucket.object_versions.all():
+        files.append({'Key': obj_version.object_key,
+                      'VersionId': obj_version.id})
+    # print(file)
+    bucket.delete_objects(Delete={'Objects': files})
+
+
 # SQS Utilities
